@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by aa on 28/04/2018.
@@ -104,4 +106,39 @@ public class ContactController {
         //On retourne le livre
         return contact;
     }
+
+    public void deleteAllFromTable() {
+        bdd.delete(DB_TABLE, null, null);
+    }
+
+    public ArrayList<Contact> selectAllFromTable(){
+        ArrayList<Contact> lists = new ArrayList<>();
+        Cursor c = bdd.query(DB_TABLE, new String[] {COL_id, COL_fullname, COL_type, COL_num_tel}, null , null, null, null, null);
+       if(c.getCount() == 0)
+            return  null;
+
+       c.moveToFirst();
+        while (!c.isAfterLast()){
+            lists.add(new Contact(c.getInt(0), c.getString(1), c.getString(2), c.getString(3)));
+            c.moveToNext();
+        }
+        c.close();
+        return lists;
+    }
+
+    public ArrayList<Contact> selectAllFromTableWhere(String cond, String valeur){
+        ArrayList<Contact> lists = new ArrayList<>();
+        Cursor c = bdd.query(DB_TABLE, new String[] {COL_id, COL_fullname, COL_type, COL_num_tel}, cond +"=="+valeur , null, null, null, null);
+       if(c.getCount() == 0)
+            return  null;
+
+       c.moveToFirst();
+        while (!c.isAfterLast()){
+            lists.add(new Contact(c.getInt(0), c.getString(1), c.getString(2), c.getString(3)));
+            c.moveToNext();
+        }
+        c.close();
+        return lists;
+    }
+
 }
