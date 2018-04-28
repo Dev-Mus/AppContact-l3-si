@@ -28,6 +28,13 @@ public class Contact {
         this.created_at = created_at;
     }
 
+    public Contact(int id, String fullname, String type, String num_tel) {
+        this.id = id;
+        this.fullname = fullname;
+        this.type = type;
+        this.num_tel = num_tel;
+    }
+
     public Contact(String fullname, String type, String num_tel) {
         this.fullname = fullname;
         this.type = type;
@@ -39,8 +46,11 @@ public class Contact {
     }
 
     public String getStringContactComplete() {
-
         return "( " + this.getId() + " / "+ this.fullname + " / " + this.type + " / " + this.getNum_tel() +" / " + this.getCreated_at().toString() +" )";
+    }
+
+    public String toString(){
+        return "ID : "+this.id+"\nfullname : "+this.fullname+"\ntype : "+this.type+"\n num_tel : "+ this.num_tel;
     }
 
     public int getId() {

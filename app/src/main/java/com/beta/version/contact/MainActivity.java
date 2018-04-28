@@ -12,8 +12,13 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView txtcontact;
     private DataBaseContacts dataBaseContacts;
+
     private  static  final  String DB_TABLE = "Save_table";
-    private  static  final  String col[] = {"id", "fullname", "type", "num_tel", "created_at"};
+    private  static  final  String COL_id = "id";
+    private  static  final  String COL_fullname = "fullname";
+    private  static  final  String COL_type = "type";
+    private  static  final  String COL_num_tel = "num_tel";
+    private  static  final  String COL_created_at = "created_at";
 
 
 
@@ -25,17 +30,18 @@ public class MainActivity extends AppCompatActivity {
 
         txtcontact.append("new   : ");
 
-        dataBaseContacts = new DataBaseContacts(this);
-            Contact contact = new Contact(0,"said", "mobile", "05565",new java.sql.Date(2010,05,20));
-            txtcontact.append(contact.getStringContactComplete()+"\n");
-        dataBaseContacts.close();
+        ContactController contactController = new ContactController(this);
+
+        //Création d'un contact
+        Contact contact = new Contact("abcd", "Programme", "05565");
+
+        //On ouvre la base de données pour écrire dedans
+        contactController.open();
+        //On insère le livre que l'on vient de créer
+            contactController.insertContact(contact);
+        txtcontact.append(contactController.getContactWithFullname("abcd").toString());
+        contactController.close();
+
         txtcontact.append("fin   : ");
     }
 }
-
-        /*dataBaseContacts.insertInToTable(contact);
-
-        List<Contact> lists = dataBaseContacts.selectAllFromTable();
-        for ( Contact contacte : lists) {
-            txtcontact.append(contacte.getStringContact()+ "\n\n");
-        }*/
