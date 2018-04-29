@@ -15,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
-public class CustomAdapter extends BaseAdapter {
+public class ContactAdapter extends BaseAdapter {
 
     Context context;
     List<Contact> lists;
 
-    CustomAdapter(Context context, List<Contact> lists) {
+    ContactAdapter(Context context, List<Contact> lists) {
         this.context = context;
         this.lists = lists;
     }

@@ -22,7 +22,7 @@
         android:layout_toRightOf="@+id/profile_pic"
         android:paddingBottom="10dp"
         android:text="txt"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/num_tel"
