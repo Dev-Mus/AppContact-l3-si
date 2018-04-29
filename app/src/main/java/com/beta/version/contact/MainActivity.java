@@ -1,119 +1,4 @@
 package com.beta.version.contact;
-/*
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-
-public class MainActivity extends AppCompatActivity {
-
-
-    private TextView txtcontact;
-    private DataBaseContacts dataBaseContacts;
-
-    private  static  final  String DB_TABLE = "Save_table";
-    private  static  final  String COL_id = "id";
-    private  static  final  String COL_fullname = "fullname";
-    private  static  final  String COL_type = "type";
-    private  static  final  String COL_num_tel = "num_tel";
-    private  static  final  String COL_created_at = "created_at";
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        txtcontact = (TextView) findViewById( R.id.txtcontact );
-
-        txtcontact.append("new   : ");
-
-        ContactController contactController = new ContactController(this);
-
-        //Création d'un contact
-             Contact contact = new Contact("abcd", "Programme", "05565");
-
-        //On ouvre la base de données pour écrire dedans
-        contactController.open();
-        //On insère le livre que l'on vient de créer
-//            contactController.insertContact(contact);
-
-
-           // Contact nv = contactController.getContactWithFullname("abcd");
-           // txtcontact.append(nv.toString());
-
-            contactController.deleteAllFromTable();
-        ArrayList<Contact> lists = contactController.selectAllFromTable();
-        if(lists != null) {
-            for (Contact var : lists) {
-                txtcontact.append(var.toString()+"\n\n");
-            }
-        } else
-            Toast.makeText(this, "list des Contacts est vide ..!", Toast.LENGTH_LONG).show();
-
-
-
-
-
-/*
-        if(nv != null){
-            //On affiche les infos du livre dans un Toast
-            Toast.makeText(this, nv.toString(), Toast.LENGTH_LONG).show();
-            //On modifie le titre du livre
-            nv.setFullname("livre");
-            //Puis on met à jour la BDD
-            contactController.updateContact(nv.getId(), nv);
-        }
-
-        //On extrait le livre de la BDD grâce au nouveau titre
-        nv = contactController.getContactWithFullname("livre");
-        //S'il existe un livre possédant ce titre dans la BDD
-        if(nv != null){
-            //On affiche les nouvelles informations du livre pour vérifier que le titre du livre a bien été mis à jour
-            Toast.makeText(this, nv.toString(), Toast.LENGTH_LONG).show();
-            //on supprime le livre de la BDD grâce à son ID
-            contactController.removeContactWithID(nv.getId());
-        }
-
-        //On essaye d'extraire de nouveau le livre de la BDD toujours grâce à son nouveau titre
-        nv = contactController.getContactWithFullname("livre");
-        //Si aucun livre n'est retourné
-        if(nv == null){
-            //On affiche un message indiquant que le livre n'existe pas dans la BDD
-            Toast.makeText(this, "Ce Contact n'existe pas dans la BDD", Toast.LENGTH_LONG).show();
-        }
-        //Si le livre existe (mais normalement il ne devrait pas)
-        else{
-            //on affiche un message indiquant que le livre existe dans la BDD
-            Toast.makeText(this, "Ce Contact existe dans la BDD", Toast.LENGTH_LONG).show();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
- /*       contactController.close();
-
-        txtcontact.append("fin   : ");
-    }
-}
-*/
-
 
 import android.app.Activity;
 import android.content.res.TypedArray;
@@ -123,18 +8,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements OnItemClickListener {
 
-    String[] member_names;
-    TypedArray profile_pics;
-    String[] statues;
-    String[] contactType;
+    private DataBaseContacts dataBaseContacts;
 
-    List<RowItem> rowItems;
+    List<Contact> lists;
     ListView mylistview;
 
     @Override
@@ -142,37 +22,38 @@ public class MainActivity extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rowItems = new ArrayList<RowItem>();
+        TypedArray profile_pics = getResources().obtainTypedArray(R.array.profile_pics);
 
-        member_names = getResources().getStringArray(R.array.Member_names);
+        ContactController contactController = new ContactController(this);
 
-        profile_pics = getResources().obtainTypedArray(R.array.profile_pics);
+        //Création d'un contact
+        //Contact contact = new Contact("abcd55", "Programme", "05565");
 
-        statues = getResources().getStringArray(R.array.statues);
+        contactController.open();
 
-        contactType = getResources().getStringArray(R.array.contactType);
+            //contactController.insertContact(contact);
+            lists = contactController.selectAllFromTable();
 
-        for (int i = 0; i < member_names.length; i++) {
-            RowItem item = new RowItem(member_names[i],
-                    profile_pics.getResourceId(i, -1), statues[i],
-                    contactType[i]);
-            rowItems.add(item);
-        }
+            if(lists == null) {
+                Toast.makeText(this, "list des Contacts est vide ..!", Toast.LENGTH_LONG).show();
+            } else {
+                mylistview = (ListView) findViewById(R.id.list);
+            for (Contact c : lists)
+                Toast.makeText(this, "list"+c.toString() , Toast.LENGTH_LONG).show();
 
-        mylistview = (ListView) findViewById(R.id.list);
-        CustomAdapter adapter = new CustomAdapter(this, rowItems);
-        mylistview.setAdapter(adapter);
-
-        mylistview.setOnItemClickListener(this);
-
+                CustomAdapter adapter = new CustomAdapter(this, lists);
+                mylistview.setAdapter(adapter);
+                mylistview.setOnItemClickListener(this);
+            }
+        contactController.close();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
-        String member_name = rowItems.get(position).getMember_name();
-        Toast.makeText(getApplicationContext(), "" + member_name,
+        String fullname = lists.get(position).getFullname();
+        Toast.makeText(getApplicationContext(), "" + fullname,
                 Toast.LENGTH_SHORT).show();
     }
 

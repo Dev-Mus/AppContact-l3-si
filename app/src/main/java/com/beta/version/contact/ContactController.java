@@ -126,8 +126,8 @@ public class ContactController {
         return lists;
     }
 
-    public ArrayList<Contact> selectAllFromTableWhere(String cond, String valeur){
-        ArrayList<Contact> lists = new ArrayList<>();
+    public List<Contact> selectAllFromTableWhere(String cond, String valeur){
+        List<Contact> lists = new ArrayList<>();
         Cursor c = bdd.query(DB_TABLE, new String[] {COL_id, COL_fullname, COL_type, COL_num_tel}, cond +"=="+valeur , null, null, null, null);
        if(c.getCount() == 0)
             return  null;
@@ -140,5 +140,6 @@ public class ContactController {
         c.close();
         return lists;
     }
+
 
 }

@@ -10,10 +10,12 @@
         android:layout_height="70dp"
         android:contentDescription="desc"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/robert" />
 
     <TextView
-        android:id="@+id/member_name"
+        android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -23,22 +25,23 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/num_tel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/member_name"
-        android:layout_below="@+id/member_name"
+        android:layout_alignLeft="@+id/fullname"
+        android:layout_below="@+id/fullname"
         android:text="txt"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/contact_type"
+        android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/member_name"
-        android:layout_alignBottom="@+id/member_name"
+        android:layout_alignBaseline="@+id/fullname"
+        android:layout_alignBottom="@+id/fullname"
         android:layout_alignParentRight="true"
         android:text="txt"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_marginRight="2dp"/>
 
 </RelativeLayout>
