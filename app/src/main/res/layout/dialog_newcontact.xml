@@ -5,12 +5,12 @@
     android:paddingLeft="5dp"
     android:paddingRight="5dp">
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="New Contact"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -23,14 +23,14 @@
         android:inputType="textPersonName"
         android:hint="Fullname" />
 
-    <EditText
+
+    <Spinner
         android:id="@+id/Etype"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Type" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/Enum_tel"

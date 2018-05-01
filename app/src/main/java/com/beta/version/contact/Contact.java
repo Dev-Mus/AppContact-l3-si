@@ -11,24 +11,24 @@ import java.util.Date;
 public class Contact {
 
 
-    private int id;
+    private String id;
     private String fullname;
     private String type;
     private String num_tel;
-    private Date created_at;
+    private String favoris = "0";
 
     public Contact() {
     }
 
-    public Contact(int id, String fullname, String type, String num_tel, Date created_at) {
+    public Contact( String id, String fullname, String type, String num_tel, String favoris) {
         this.id = id;
         this.fullname = fullname;
         this.type = type;
         this.num_tel = num_tel;
-        this.created_at = created_at;
+        this.favoris = favoris;
     }
 
-    public Contact(int id, String fullname, String type, String num_tel) {
+    public Contact( String id, String fullname, String type, String num_tel) {
         this.id = id;
         this.fullname = fullname;
         this.type = type;
@@ -46,18 +46,18 @@ public class Contact {
     }
 
     public String getStringContactComplete() {
-        return "( " + this.getId() + " / "+ this.fullname + " / " + this.type + " / " + this.getNum_tel() +" / " + this.getCreated_at().toString() +" )";
+        return "( " + this.getId() + " / "+ this.fullname + " / " + this.type + " / " + this.getNum_tel() +" / " + this.getfavoris()+" )";
     }
 
     public String toString(){
-        return "ID : "+this.id+"\nfullname : "+this.fullname+"\ntype : "+this.type+"\n num_tel : "+ this.num_tel;
+        return "ID : "+this.id+"\nfullname : "+this.fullname+"\ntype : "+this.type+"\n num_tel : "+ this.num_tel+"\n favoris : "+this.favoris;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId( String id) {
         this.id = id;
     }
 
@@ -85,12 +85,12 @@ public class Contact {
         this.num_tel = num_tel;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public String getfavoris() {
+        return favoris;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setfavoris(String favoris) {
+        this.favoris = favoris;
     }
 
 }

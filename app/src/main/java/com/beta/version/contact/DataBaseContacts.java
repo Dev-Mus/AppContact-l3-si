@@ -25,14 +25,14 @@ public class DataBaseContacts extends SQLiteOpenHelper {
     private  static  final  String COL_fullname = "fullname";
     private  static  final  String COL_type = "type";
     private  static  final  String COL_num_tel = "num_tel";
-    private  static  final  String COL_created_at = "created_at";
+    private  static  final  String COL_favoris = "favoris";
 
     private  static  final  String CREATE_TABLE = "CREATE TABLE " + DB_TABLE + " (" +
-                                                        COL_id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                        COL_id + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
                                                         COL_fullname + " VARCHAR(100) NULL , " +
                                                         COL_type + " VARCHAR(20) NULL , " +
-                                                        COL_num_tel + " VARCHAR(10) NULL  " +
-                                                       // COL_created_at + " DATE NULL " +
+                                                        COL_num_tel + " VARCHAR(10) NULL , " +
+                                                        COL_favoris + " VARCHAR(10)  NULL " +
                                                         ") ;";
 
     public DataBaseContacts(Context context, String DB_DATABASE, SQLiteDatabase.CursorFactory factory, int DB_VERSION) {

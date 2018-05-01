@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactAdapter extends BaseAdapter {
 
@@ -42,10 +44,9 @@ public class ContactAdapter extends BaseAdapter {
 
     /* private view holder class */
     private class ViewHolder {
-        ImageView profile_pic;
+        CircleImageView profile_pic;
         TextView fullname;
         TextView num_tel;
-        TextView type;
     }
 
     @Override
@@ -61,19 +62,15 @@ public class ContactAdapter extends BaseAdapter {
 
             holder.fullname = (TextView) convertView
                     .findViewById(R.id.fullname);
-            holder.profile_pic = (ImageView) convertView
+            holder.profile_pic = (CircleImageView) convertView
                     .findViewById(R.id.profile_pic);
             holder.num_tel = (TextView) convertView.findViewById(R.id.num_tel);
-            holder.type = (TextView) convertView
-                    .findViewById(R.id.type);
 
             Contact contact = lists.get(position);
 
-            holder.profile_pic.setImageResource(contact.getId());
+            holder.profile_pic.setImageResource(R.drawable.user);
             holder.fullname.setText(contact.getFullname());
             holder.num_tel.setText(contact.getNum_tel());
-            holder.type.setText(contact.getType());
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

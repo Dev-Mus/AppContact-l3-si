@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">CONTACT</string>
     <string name="profile">@drawable/robert</string>
+    <string-array name="type">
+        <item>Mobile</item>
+        <item>Portable</item>
+        <item>Fax</item>
+        <item>Bureau</item>
+        <item>Principale</item>
+        <item>Domicile</item>
+        <item>Auther</item>
+    </string-array>
 </resources>
