@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="appelle" />
+        android:text="Appel" />
 
     <Button
         android:id="@+id/listM2"
@@ -21,7 +21,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/listM1"
-        android:text="message" />
+        android:text="Message" />
 
     <Button
         android:id="@+id/listM3"
@@ -48,6 +48,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/listM4"
-        android:text="supprimier" />
+        android:text="Supprimer" />
+
+    <Button
+        android:id="@+id/listM6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/listM5"
+        android:text="Details" />
 
 </RelativeLayout>

@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
     private ContactController contactController;
     private ContactAdapter adapter;
     private BoomMenuButton bmb;
-    private Button listM1, listM2, listM3, listM4, listM5;
+    private Button listM1, listM2, listM3, listM4, listM5, listM6;
     private View view;
     private AlertDialog dialoglist;
 
@@ -67,6 +67,7 @@ public class MainActivity extends Activity {
                     listM3 = (Button) view.findViewById(R.id.listM3);
                     listM4 = (Button) view.findViewById(R.id.listM4);
                     listM5 = (Button) view.findViewById(R.id.listM5);
+                    listM6 = (Button) view.findViewById(R.id.listM6);
 
                     if(lists.get(position).getfavoris().equals("1"))
                         listM3.setText("supprimier du favoris");
@@ -276,6 +277,34 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Log.i("TEST", "onClick : bien listM5"+CONTACT.toString());
                 dialoglist.hide();
+            }
+        });
+        listM6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("TEST", "onClick : bien listM6"+CONTACT.toString());
+                dialoglist.hide();
+
+                final View viewA = getLayoutInflater().inflate(R.layout.affich, null);
+                Button modifie= (Button) viewA.findViewById(R.id.btn);
+                TextView AfullnameT= (TextView) viewA.findViewById(R.id.AfullnameT);
+                AfullnameT.setText(CONTACT.getFullname());
+                TextView AtypeT= (TextView) viewA.findViewById(R.id.AtypeT);
+                AtypeT.setText(CONTACT.getType());
+                TextView Anum_telT= (TextView) viewA.findViewById(R.id.Anum_telT);
+                Anum_telT.setText(CONTACT.getNum_tel());
+
+                AlertDialog.Builder builderlist = new AlertDialog.Builder(MainActivity.this);
+                builderlist.setView(viewA);
+                final AlertDialog dialog = builderlist.create();
+                dialog.show();
+                modifie.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.hide();
+                        newContact(false, CONTACT);
+                    }
+                });
             }
         });
     }

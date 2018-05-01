@@ -3,16 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="2dp" >
-<!--
-    <ImageView
-        android:id="@+id/profile_pic"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:contentDescription="desc"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/robert" />-->
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,10 +27,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp"
+        android:paddingRight="15dp"
         android:layout_toEndOf="@+id/profile_pic"
         android:layout_toRightOf="@+id/profile_image"
         android:paddingBottom="10dp"
-        android:text="txt"
         android:textSize="22sp" />
 
     <TextView
@@ -48,18 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/fullname"
         android:layout_below="@+id/fullname"
-        android:text="txt"
+        android:paddingRight="15dp"
         android:textSize="16sp" />
 
- <!--   <TextView
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/fullname"
-        android:layout_alignBottom="@+id/fullname"
-        android:layout_alignParentRight="true"
-        android:text="txt"
-        android:textSize="16sp"
-        android:layout_marginRight="2dp"/>
--->
 </RelativeLayout>
