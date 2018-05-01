@@ -48,6 +48,36 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         listview = (ListView) findViewById(R.id.list);
+        listview.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view = getLayoutInflater().inflate(R.layout.list, null);
+                listM1 = (Button) view.findViewById(R.id.listM1);
+                listM2 = (Button) view.findViewById(R.id.listM2);
+                listM3 = (Button) view.findViewById(R.id.listM3);
+                listM4 = (Button) view.findViewById(R.id.listM4);
+                listM5 = (Button) view.findViewById(R.id.listM5);
+                listM6 = (Button) view.findViewById(R.id.listM6);
+
+                if (lists.get(position).getfavoris().equals("1"))
+                    listM3.setText("supprimier du favoris");
+                else
+                    listM3.setText("ajoute au favoris");
+                listFunction(lists.get(position));
+                AlertDialog.Builder builderlist = new AlertDialog.Builder(MainActivity.this);
+                builderlist.setView(view);
+                dialoglist = builderlist.create();
+                dialoglist.show();
+            }
+        });
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                affichage(lists.get(position));
+                Log.i("TEST", "onClick : ID : " + lists.get(position).getId());
+                return true;
+            }
+        });
 
         contactController = new ContactController(this);
         contactController.open();
@@ -58,40 +88,6 @@ public class MainActivity extends Activity {
         } else {
             adapter = new ContactAdapter(this, lists);
             listview.setAdapter(adapter);
-            listview.setOnItemClickListener(new OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    view = getLayoutInflater().inflate(R.layout.list, null);
-                    listM1 = (Button) view.findViewById(R.id.listM1);
-                    listM2 = (Button) view.findViewById(R.id.listM2);
-                    listM3 = (Button) view.findViewById(R.id.listM3);
-                    listM4 = (Button) view.findViewById(R.id.listM4);
-                    listM5 = (Button) view.findViewById(R.id.listM5);
-                    listM6 = (Button) view.findViewById(R.id.listM6);
-
-                    if(lists.get(position).getfavoris().equals("1"))
-                        listM3.setText("supprimier du favoris");
-                    else
-                        listM3.setText("ajoute au favoris");
-                    listFunction(lists.get(position));
-                    AlertDialog.Builder builderlist = new AlertDialog.Builder(MainActivity.this);
-                    builderlist.setView(view);
-                    dialoglist = builderlist.create();
-                    dialoglist.show();
-                }
-            });
-            listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    Contact contact = lists.get(position);
-                    String fullname = lists.get(position).getFullname();
-                    newContact(false, contact); //modifier
-                    //remove(position,contact); //suprimier
-
-                    Log.i("TEST", "onClick : " + fullname + " ID : " + lists.get(position).getId());
-                    return true;
-                }
-            });
         }
 
         bmb = findViewById(R.id.boom);
@@ -111,17 +107,16 @@ public class MainActivity extends Activity {
                                     newContact(true, null);
                                     break;
                                 case 1:
-                                    lists = contactController.selectAllFromTableWhere("favoris","1");
-                                    if(lists != null) {
+                                    lists = contactController.selectAllFromTableWhere("favoris", "1");
+                                    if (lists != null) {
                                         adapter = new ContactAdapter(MainActivity.this, lists);
                                         listview.setAdapter(adapter);
                                         break;
-                                    }
-                                    else
+                                    } else
                                         Toast.makeText(MainActivity.this, "list des Contacts favoris est vide ..!", Toast.LENGTH_LONG).show();
                                 case 2:
                                     lists = contactController.selectAllFromTable();
-                                    if(lists == null)
+                                    if (lists == null)
                                         Toast.makeText(MainActivity.this, "list des Contacts est vide ..!", Toast.LENGTH_LONG).show();
                                     else {
                                         adapter = new ContactAdapter(MainActivity.this, lists);
@@ -131,7 +126,7 @@ public class MainActivity extends Activity {
                                 default:
                                     break;
                             }
-                            Log.i("TEST", "Clicked " + index );
+                            Log.i("TEST", "Clicked " + index);
                         }
                     });
             bmb.addBuilder(builder);
@@ -176,8 +171,8 @@ public class MainActivity extends Activity {
             Efullname.setText(CONTACT.getFullname());
             Enum_tel.setText(CONTACT.getNum_tel());
             String[] tab = {"Mobile", "Portable", "Fax", "Bureau", "Principale", "Domicile", "Auther"};
-            for (int i=0; i<tab.length; i++)
-                if(tab[i].equals(CONTACT.getType())) {
+            for (int i = 0; i < tab.length; i++)
+                if (tab[i].equals(CONTACT.getType())) {
                     Etype.setSelection(i);
                     break;
                 }
@@ -219,54 +214,54 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 dialoglist.hide();
-                Uri uri = Uri.parse("tel:"+CONTACT.getNum_tel());
+                Uri uri = Uri.parse("tel:" + CONTACT.getNum_tel());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                if(ActivityCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     String[] permissions = {Manifest.permission.CALL_PHONE};
                     requestPermissions(permissions, 1000);
                     return;
                 }
                 startActivity(intent);
-                Log.i("TEST", "onClick : bien listM1"+CONTACT.toString());
+                Log.i("TEST", "onClick : bien listM1" + CONTACT.toString());
             }
         });
         listM2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialoglist.hide();
-                Uri uri = Uri.parse("sms:"+CONTACT.getNum_tel());
+                Uri uri = Uri.parse("sms:" + CONTACT.getNum_tel());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                if(ActivityCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                     String[] permissions = {Manifest.permission.SEND_SMS};
                     requestPermissions(permissions, 1000);
                     return;
                 }
                 startActivity(intent);
-                Log.i("TEST", "onClick : bien listM2"+CONTACT.toString());
+                Log.i("TEST", "onClick : bien listM2" + CONTACT.toString());
             }
         });
         listM3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TEST", "onClick : bien listM3"+CONTACT.toString());
-                Log.i("TEST", "onClick 0: "+CONTACT.toString());
-                if(CONTACT.getfavoris().equals("1"))
+                Log.i("TEST", "onClick : bien listM3" + CONTACT.toString());
+                Log.i("TEST", "onClick 0: " + CONTACT.toString());
+                if (CONTACT.getfavoris().equals("1"))
                     CONTACT.setfavoris("0");
-                else if(CONTACT.getfavoris().equals("0"))
+                else if (CONTACT.getfavoris().equals("0"))
                     CONTACT.setfavoris("1");
                 contactController.updateContact(CONTACT.getId(), CONTACT);
                 adapter = new ContactAdapter(MainActivity.this, lists);
                 listview.setAdapter(adapter);
-                Log.i("TEST", "onClick 4: "+CONTACT.toString());
+                Log.i("TEST", "onClick 4: " + CONTACT.toString());
                 dialoglist.hide();
             }
         });
         listM4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TEST", "onClick : bien listM4"+CONTACT.toString());
+                Log.i("TEST", "onClick : bien listM4" + CONTACT.toString());
                 dialoglist.hide();
                 newContact(false, CONTACT);
                 Toast.makeText(MainActivity.this, "bien modifier", Toast.LENGTH_LONG).show();
@@ -275,50 +270,55 @@ public class MainActivity extends Activity {
         listM5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TEST", "onClick : bien listM5"+CONTACT.toString());
+                Log.i("TEST", "onClick : bien listM5" + CONTACT.toString());
+                remove(CONTACT);
                 dialoglist.hide();
             }
         });
         listM6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TEST", "onClick : bien listM6"+CONTACT.toString());
+                Log.i("TEST", "onClick : bien listM6" + CONTACT.toString());
                 dialoglist.hide();
-
-                final View viewA = getLayoutInflater().inflate(R.layout.affich, null);
-                Button modifie= (Button) viewA.findViewById(R.id.btn);
-                TextView AfullnameT= (TextView) viewA.findViewById(R.id.AfullnameT);
-                AfullnameT.setText(CONTACT.getFullname());
-                TextView AtypeT= (TextView) viewA.findViewById(R.id.AtypeT);
-                AtypeT.setText(CONTACT.getType());
-                TextView Anum_telT= (TextView) viewA.findViewById(R.id.Anum_telT);
-                Anum_telT.setText(CONTACT.getNum_tel());
-
-                AlertDialog.Builder builderlist = new AlertDialog.Builder(MainActivity.this);
-                builderlist.setView(viewA);
-                final AlertDialog dialog = builderlist.create();
-                dialog.show();
-                modifie.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.hide();
-                        newContact(false, CONTACT);
-                    }
-                });
+                affichage(CONTACT);
             }
         });
     }
 
-    public void remove(int position, Contact contact){
-        //contactController.removeContactWithID(contact.getId());
-        //lists = contactController.selectAllFromTable();
+    public void affichage(final Contact CONTACT) {
+        final View viewA = getLayoutInflater().inflate(R.layout.affich, null);
+        Button modifie = (Button) viewA.findViewById(R.id.btn);
+        TextView AfullnameT = (TextView) viewA.findViewById(R.id.AfullnameT);
+        AfullnameT.setText(CONTACT.getFullname());
+        TextView AtypeT = (TextView) viewA.findViewById(R.id.AtypeT);
+        AtypeT.setText(CONTACT.getType());
+        TextView Anum_telT = (TextView) viewA.findViewById(R.id.Anum_telT);
+        Anum_telT.setText(CONTACT.getNum_tel());
+
+        AlertDialog.Builder builderlist = new AlertDialog.Builder(MainActivity.this);
+        builderlist.setView(viewA);
+        final AlertDialog dialog = builderlist.create();
+        dialog.show();
+        modifie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.hide();
+                newContact(false, CONTACT);
+            }
+        });
+    }
+
+    public void remove(Contact contact) {
+        contactController.removeContactWithID(contact.getId());
+        lists = contactController.selectAllFromTable();
         if (lists == null) {
-            Toast.makeText(MainActivity.this, "list des Contacts est vide ..!", Toast.LENGTH_LONG).show();
+            adapter.clearlists();
+            adapter.notifyDataSetChanged();
+            Toast.makeText(MainActivity.this, "list des Contacts est vide ..! ", Toast.LENGTH_LONG).show();
         } else {
-            //  adapter = new ContactAdapter(MainActivity.this, lists);
-            // listview.notify();
-            //    listview.setAdapter(adapter);
-            Toast.makeText(MainActivity.this, "bien supprimer", Toast.LENGTH_LONG).show();
+            adapter = new ContactAdapter(MainActivity.this, lists);
+            listview.setAdapter(adapter);
+            Toast.makeText(MainActivity.this, "bien supprimier", Toast.LENGTH_LONG).show();
         }
     }
 

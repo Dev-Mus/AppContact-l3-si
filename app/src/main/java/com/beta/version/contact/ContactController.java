@@ -72,7 +72,7 @@ public class ContactController {
     }
 
     public int removeContactWithID(String id){
-        return bdd.delete(DB_TABLE, COL_id + " = " + id, null);
+        return bdd.delete(DB_TABLE, COL_id + " = " + id , null);
     }
 
     public Contact getContactWithFullname(String fullname){

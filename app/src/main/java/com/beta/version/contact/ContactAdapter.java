@@ -48,7 +48,10 @@ public class ContactAdapter extends BaseAdapter {
         TextView fullname;
         TextView num_tel;
     }
-
+    public void clearlists() {
+        // clear the data
+        lists.clear();
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
