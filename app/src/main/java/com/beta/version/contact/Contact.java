@@ -20,7 +20,7 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact( String id, String fullname, String type, String num_tel, String favoris) {
+    public Contact(String id, String fullname, String type, String num_tel, String favoris) {
         this.id = id;
         this.fullname = fullname;
         this.type = type;
@@ -28,7 +28,7 @@ public class Contact {
         this.favoris = favoris;
     }
 
-    public Contact( String id, String fullname, String type, String num_tel) {
+    public Contact(String id, String fullname, String type, String num_tel) {
         this.id = id;
         this.fullname = fullname;
         this.type = type;
@@ -46,18 +46,18 @@ public class Contact {
     }
 
     public String getStringContactComplete() {
-        return "( " + this.getId() + " / "+ this.fullname + " / " + this.type + " / " + this.getNum_tel() +" / " + this.getfavoris()+" )";
+        return "( " + this.getId() + " / " + this.fullname + " / " + this.type + " / " + this.getNum_tel() + " / " + this.getfavoris() + " )";
     }
 
-    public String toString(){
-        return "ID : "+this.id+"\nfullname : "+this.fullname+"\ntype : "+this.type+"\n num_tel : "+ this.num_tel+"\n favoris : "+this.favoris;
+    public String toString() {
+        return "ID : " + this.id + "\nfullname : " + this.fullname + "\ntype : " + this.type + "\n num_tel : " + this.num_tel + "\n favoris : " + this.favoris;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId( String id) {
+    public void setId(String id) {
         this.id = id;
     }
 

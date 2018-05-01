@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import android.widget.TextView;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,10 +49,12 @@ public class ContactAdapter extends BaseAdapter {
         TextView fullname;
         TextView num_tel;
     }
+
     public void clearlists() {
         // clear the data
         lists.clear();
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

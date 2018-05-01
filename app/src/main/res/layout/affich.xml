@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/Aprofile_pic"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:contentDescription="desc"
-        android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:src="@drawable/user"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#000000"/>
+        app:civ_border_color="#000000"
+        app:civ_border_width="2dp" />
 
 
     <Button
@@ -34,8 +32,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/Aprofile_pic"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
         android:text="Fullname : "
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
@@ -45,9 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/Afullname"
         android:paddingLeft="40dp"
         android:paddingRight="30dp"
-        android:layout_below="@+id/Afullname"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
@@ -57,8 +55,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/AfullnameT"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
         android:text="Type : "
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
@@ -68,8 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:paddingLeft="40dp"
         android:layout_below="@+id/Atype"
+        android:paddingLeft="40dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
@@ -79,8 +77,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/AtypeT"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
         android:text="Numero Telephone : "
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
@@ -90,9 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:paddingLeft="40dp"
-        android:layout_marginBottom="20dp"
         android:layout_below="@+id/Anum_tel"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="40dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
