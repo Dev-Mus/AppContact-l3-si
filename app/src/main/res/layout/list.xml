@@ -48,7 +48,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/listM4"
-        android:text="Supprimer" />
+        android:text="Supprimer" />-
 
     <Button
         android:id="@+id/listM6"

@@ -46,7 +46,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:paddingLeft="40dp"
-        android:paddingRight="40dp"
+        android:paddingRight="30dp"
         android:layout_below="@+id/Afullname"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
